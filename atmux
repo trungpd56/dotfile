@@ -1,0 +1,98 @@
+# Ctrl-s prefix key. Default => C-b. Send C-s with repeat option via C-s C-s
+unbind-key C-b
+set -g prefix C-a
+bind -r C-a send-prefix
+
+# improve color
+set -g default-terminal 'xterm-256color'
+
+# history
+set -g history-limit 10000
+set -g allow-rename off
+
+# Window numbers from 1, not from 0, renumber if closed
+set -g base-index 1
+set-option -g renumber-windows on
+
+# Quick Escape (for vim)
+set -s escape-time 0
+
+# Toggle status bar display with "s"
+bind-key s set -g status
+
+
+# Hotkeys using Alt/Option as a modifier
+bind-key -n M-\- split-window -v -c "#{pane_current_path}"
+bind-key -n M-\\ split-window -h -c "#{pane_current_path}"
+
+bind-key -n M-z resize-pane -Z
+
+bind-key -n M-Left select-pane -L
+bind-key -n M-Right select-pane -R
+bind-key -n M-Down select-pane -U
+bind-key -n M-Up select-pane -D
+
+#confirm-before "kill-pane"
+bind-key -n M-x kill-pane
+bind-key x kill-pane
+
+#join and switch pane
+#breakpane prefix + !
+bind-key s command-prompt -p "Send pane to:" "join-pane -t :'%%'"
+
+
+
+#bind -n M-l last-window
+bind-key -n M-j select-window -p
+bind-key -n M-k select-window -n
+bind-key -n M-n new-window -c "#{pane_current_path}"
+
+bind-key -n M-/ copy-mode
+
+# Reload tmux.conf with prefix-r
+bind C-r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
+
+# linux system clipboard
+bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"
+bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "xclip -in -selection clipboard"
+
+set -g mouse off
+set -g status-keys vi
+set -g focus-events on
+
+# Various colors.
+set -g status-style fg=colour244
+set -g window-status-current-style fg=colour222
+set -g pane-border-style fg=colour240
+set -g pane-active-border-style fg=colour243
+
+set -g status-left ''
+set -g status-left-length 0
+
+# Display a clock on the bottom right of the status bar.
+set -g status-right '%a %Y-%m-%d %H:%M'
+set -g status-right-length 20
+#set -g status-right ''
+#set -g status-right-length 0
+
+# Smart pane switching with awareness of Vim splits.
+# See: https://github.com/christoomey/vim-tmux-navigator
+
+# -----------------------------------------------------------------------------
+# Plugin Manager - https://github.com/tmux-plugins/tpm
+# If you didn't use my dotfiles install script you'll need to:
+#   Step 1) git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+#   Step 2) Reload tmux if it's already started with `r
+#   Step 3) Launch tmux and hit prefix I (capital i) to install / prefix U to updates / prefix Alt U to uninstall
+# -----------------------------------------------------------------------------
+
+# List of plugins.
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-logging'
+
+
+# Initialize TPM (keep this line at the very bottom of your tmux.conf).
+run -b '~/.tmux/plugins/tpm/tpm'
+

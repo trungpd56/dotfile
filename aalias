@@ -1,0 +1,13 @@
+alias eal="vim ~/dotfile/aalias"
+alias shutpc="net rpc shutdown -f -t 0 -C 'message' -U trungpd56%trungpd@123 -I 172.16.1.252"
+alias rmdup="find . -name *\(1\)* -exec rm {} \;"
+alias update="sudo apt update | sudo apt upgrade -y"
+alias vpn="sudo vim /etc/openvpn/server.conf"
+alias vpnadd="sudo ~/Downloads/openvpn-install.sh"
+alias vpni="sudo sed -i '/redirect/s/^#p/p/g' /etc/openvpn/server.conf && sudo systemctl restart openvpn"
+alias vpnl="sudo sed -i '/redirect/s/^p/#p/g' /etc/openvpn/server.conf && sudo systemctl restart openvpn"
+alias vpnre="sudo systemctl restart openvpn"
+alias wakepc="sudo etherwake -i eno1 d8:cb:8a:de:b4:f5"
+alias ydl="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 "
+alias yclear="rename 's/.{12}\.mp4/.mp4/' * && mv *.mp4 d"
+
