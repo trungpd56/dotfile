@@ -22,15 +22,21 @@ bind-key s set -g status
 
 
 # Hotkeys using Alt/Option as a modifier
-bind-key -n M-\- split-window -v -c "#{pane_current_path}"
-bind-key -n M-\\ split-window -h -c "#{pane_current_path}"
+bind-key -n M-'-' split-window -v -c "#{pane_current_path}"
+bind-key -n M-'\' split-window -h -c "#{pane_current_path}"
 
 bind-key -n M-z resize-pane -Z
 
 bind-key -n M-Left select-pane -L
 bind-key -n M-Right select-pane -R
-bind-key -n M-Down select-pane -U
-bind-key -n M-Up select-pane -D
+bind-key -n M-Down select-pane -D
+bind-key -n M-Up select-pane -U
+
+pane_resize=5
+bind -n C-S-Up resize-pane -U $pane_resize
+bind -n C-S-Down resize-pane -D $pane_resize
+bind -n C-S-Left resize-pane -L $pane_resize
+bind -n C-S-Right resize-pane -R $pane_resize
 
 #confirm-before "kill-pane"
 bind-key -n M-x kill-pane
@@ -38,14 +44,14 @@ bind-key x kill-pane
 
 #join and switch pane
 #breakpane prefix + !
-bind-key s command-prompt -p "Send pane to:" "join-pane -t :'%%'"
-
+bind-key j command-prompt -p "Join pane from:"  "join-pane -s '%%'"
+bind-key s command-prompt -p "Send pane to:"  "join-pane -t '%%'"
 
 
 #bind -n M-l last-window
 bind-key -n M-j select-window -p
 bind-key -n M-k select-window -n
-bind-key -n M-n new-window -c "#{pane_current_path}"
+bind-key -n M-, new-window -c "#{pane_current_path}"
 
 bind-key -n M-/ copy-mode
 
@@ -54,7 +60,6 @@ bind C-r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
 
 # linux system clipboard
 bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"
-bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "xclip -in -selection clipboard"
 
 set -g mouse off
 set -g status-keys vi
@@ -88,11 +93,10 @@ set -g status-right-length 20
 
 # List of plugins.
 set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-resurrect'
+# set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-logging'
 
 
 # Initialize TPM (keep this line at the very bottom of your tmux.conf).
 run -b '~/.tmux/plugins/tpm/tpm'
-

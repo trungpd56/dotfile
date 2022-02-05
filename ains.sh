@@ -1,17 +1,10 @@
 ln -s ~/dotfile/atmux ~/.tmux.conf
-echo source ~/dotfile/abashrc >> ~/.bashrc
+ln -s ~/dotfile/avim ~/.vimrc
+echo source ~/dotfile/zzz >> ~/.bashrc
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-yes | ~/.fzf/install
-source ~/.bashrc
-
-# .gitignore, .ignore (application agnostic) or .rgignore (ripgrep specific) file.
-# https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
-sudo apt update
-sudo apt install ripgrep dos2unix autojump
-
-echo .wine > ~/.rgignore
-echo "source /usr/share/autojump/autojump.sh" >> ~/.bashrc
-
+# echo source ~/dotfile/znuc >> ~/.bashrc
+# echo source ~/dotfile/zkali >> ~/.bashrc
+# curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# git clone git://github.com/wting/autojump.git /opt

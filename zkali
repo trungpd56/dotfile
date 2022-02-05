@@ -1,0 +1,87 @@
+alias ebash="vim ~/dotfile/zkali"
+alias cplin="curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh -O"
+alias upopt="updog -p 80 -d /opt"
+alias webpy="sudo python3 -m http.server 80"
+alias mailpy="sudo python3 -m smtpd -n -c DebuggingServer 10.10.14.3:25"
+alias pcat="pwncat-cs"
+
+##upgit
+upgit () {
+  for i in /opt/*/.git; do ( echo $i; cd $i/..; git pull; ); done
+}
+export -f upgit
+
+##ipset
+export ip=10.10.11.135
+ips () {
+    sed -i -r "/ip=/s/[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/$1/g" ~/dotfile/zkali
+    source ~/.bashrc
+}
+export -f ips
+
+##nmap scan
+ipnm () {
+      sudo nmap -v -sC -sV -oN znm $ip
+}
+export -f ipnm
+
+##nmap all
+ipnma () {
+      sudo nmap -v -p- -oN znm-all $ip
+}
+export -f ipnma
+
+##sql
+sqlm () {
+  sqlmap --level=5 --risk=3 --batch $@
+}
+export -f sqlm
+
+##john
+jh () {
+  john --wordlist=/opt/rockyou.txt $@
+}
+export -f jh
+
+##wpscan
+wps () {
+  wpscan -api-token $WPSCAN $@
+}
+export -f wps
+
+##addhash
+ah () {
+  sshpass -p "$KRAKEN"  scp $1 trungpd56@172.16.1.252:/C:/Users/trung/hashcat-6.2.5/htb/$2
+}
+export -f ah
+
+##addhash
+ahcp () {
+  sshpass -p "$KRAKEN"  scp trungpd56@172.16.1.252:/C:/Users/trung/hashcat-6.2.5/htb/$1 $2
+}
+export -f ahcp
+
+
+##htb-ip
+paip () {
+htbip=$(ip addr | grep tun0 | grep inet | grep 10. | tr -s " " | cut -d " " -f 3 | cut -d "/" -f 1)
+if [[ $htbip == *"10."* ]]
+then
+   echo "$htbip"
+else
+   echo ""
+fi
+}
+
+pasrv=$(cat /etc/openvpn/*.conf | grep "remote " | cut -d " " -f 2 | cut -d "." -f 1 | cut -d "-" -f 2-)
+
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\033[1;32m\]┌\342\224\200\$([[ \$(paip) == *\"10.\"* ]] && echo \"[\[\033[1;34m\]\$pasrv\[\033[1;32m\]]\342\224\200[\[\033[1;37m\]\$(paip)\[\033[1;32m\]]\342\224\200\")[\[\033[1;37m\]\u\[\033[01;32m\]@\[\033[01;34m\]\h\[\033[1;32m\]]\342\224\200[\[\033[1;37m\]\w\[\033[1;32m\]]\n\[\033[1;32m\]\342\224\224\342\224\200\342\224\200\342\225\274 [\[\e[01;33m\]★\[\e[01;32m\]]\$ \[\e[0m\]"
+    ;;
+*)
+    ;;
+esac
+##
+
+export WPSCAN='4qSAvat9jqSWCBqx5KqbXarUsBFZfC439jBOJ1SDYzw'

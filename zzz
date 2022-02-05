@@ -1,0 +1,19 @@
+alias emux="vim ~/dotfile/atmux"
+alias evim="vim ~/dotfile/avim"
+alias t="tmux"
+alias ta="t a -t"
+alias tls="t ls"
+alias tn="t new -t"
+alias tk="t kill-session"
+export EDITOR="/usr/bin/vim"
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+#export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+#shopt -s histappend                      # append to history, don't overwrite it
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"  # Save and reload
+
+##cheatsheat
+cht () {
+  curl cheat.sh/$1
+}
+export -f cht
