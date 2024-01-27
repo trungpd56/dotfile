@@ -1,0 +1,4 @@
+alias ap="ansible-playbook"
+alias python="python3"
+alias vim="nvim"
+
