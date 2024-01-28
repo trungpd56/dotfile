@@ -2,3 +2,9 @@ alias ap="ansible-playbook"
 alias python="python3"
 alias vim="nvim"
 
+aoc() {
+    sed -i "s/AOC_SESSION=.*/AOC_SESSION=$1/" ~/.bashrc
+    source ~/.bashrc
+}
+export -f aoc
+
