@@ -1,6 +1,7 @@
 alias ap="ansible-playbook"
 alias python="python3"
 alias vim="nvim"
+alias glog="git log --oneline"
 
 aoc() {
     sed -i "s/AOC_SESSION=.*/AOC_SESSION=$1/" ~/.bashrc
