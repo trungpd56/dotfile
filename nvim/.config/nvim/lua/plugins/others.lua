@@ -1,9 +1,30 @@
 return {
+	"tpope/vim-sleuth",
+	"tpope/vim-repeat",
+	"tpope/vim-eunuch",
+	"tpope/vim-unimpaired",
+	"tpope/vim-surround",
+	"mkitt/tabline.vim",
+	"wellle/targets.vim",
+	{ "folke/neodev.nvim", opts = {} },
+	{ "numtostr/comment.nvim", opts = {}, lazy = false },
 	{
-		"pocco81/auto-save.nvim",
-		ft = { "python", "yaml" },
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {
+			disable_filetype = { "TelescopePrompt", "vim", "python" },
+		}
+	},
+	{
+		"mbbill/undotree",
 		config = function()
-			vim.keymap.set("n", "<leader>n", "<cmd>ASToggle<cr>", {})
+			vim.keymap.set("n", "<leader>u", vim.cmd.undotreetoggle)
+		end,
+	},
+	{
+		"tpope/vim-fugitive",
+		config = function()
+			vim.keymap.set("n", "<leader>gs", "<cmd>Git<cr>", {})
 		end,
 	},
 	{
@@ -14,58 +35,34 @@ return {
 			vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 	},
-	{ "justinmk/vim-sneak" },
-	{ "tpope/vim-sleuth" },
 	{
-		"ThePrimeagen/harpoon",
+		"stevearc/oil.nvim",
 		config = function()
-			local mark = require("harpoon.mark")
-			local ui = require("harpoon.ui")
-			vim.keymap.set("n", "<leader>a", mark.add_file)
-			vim.keymap.set("n", "<leader>ee", ui.toggle_quick_menu)
-			vim.keymap.set("n", "<leader>1", function()
-				ui.nav_file(1)
-			end)
-			vim.keymap.set("n", "<leader>2", function()
-				ui.nav_file(2)
-			end)
-			vim.keymap.set("n", "<leader>3", function()
-				ui.nav_file(3)
-			end)
-			vim.keymap.set("n", "<leader>4", function()
-				ui.nav_file(4)
-			end)
+			require("oil").setup({
+				skip_confirm_for_simple_edits = false,
+				view_options = {
+					show_hidden = true,
+				},
+			})
+			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 		end,
 	},
-	{ "wellle/targets.vim" },
-	{
-		"mbbill/undotree",
-		config = function()
-			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-		end,
-	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {}, -- this is equalent to setup({}) function
-	},
-	{ "numToStr/Comment.nvim", opts = {}, lazy = false },
-	{ "tpope/vim-unimpaired" },
-	{
-		"tpope/vim-fugitive",
-		keys = { { "<leader>gs", "<cmd>Git<cr>", desc = "Git status" } },
-	},
-	{
-		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
-		opts = {},
-	},
-	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
+	{ "vonheikemen/lsp-zero.nvim", branch = "v3.x" },
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "neovim/nvim-lspconfig" },
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/nvim-cmp" },
-	{ "L3MON4D3/LuaSnip" },
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp",
+			"saadparwaiz1/cmp_luasnip",
+			{
+				"L3MON4D3/LuaSnip",
+				version = "v2.*",
+				build = "make install_jsregexp",
+			},
+		},
+	},
 }

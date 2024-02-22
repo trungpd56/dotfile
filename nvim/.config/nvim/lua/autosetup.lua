@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local setup = augroup("setup", { clear = True })
 
+local setup = augroup("setup", { clear = true })
 autocmd("TextYankPost", {
 	group = setup,
 	pattern = "*",
@@ -13,13 +13,31 @@ autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("InsertLeave", {
+autocmd("InsertLeave", {
 	group = setup,
 	pattern = "*",
 	command = "set nopaste",
 })
 
-local ThePrimeagen_Fugitive = augroup("ThePrimeagen_Fugitive", { clear = True })
+autocmd("BufWritePre", {
+	group = setup,
+	pattern = "*",
+	command = [[%s/\s\+$//e]],
+})
+
+autocmd({ "TermOpen", "BufEnter" }, {
+	group = setup,
+	pattern = { "*" },
+	callback = function()
+		if vim.opt.buftype:get() == "terminal" then
+			vim.cmd(":startinsert")
+			vim.opt.nu = false
+			vim.opt.relativenumber = false
+		end
+	end,
+})
+
+local ThePrimeagen_Fugitive = augroup("ThePrimeagen_Fugitive", { clear = true })
 autocmd("BufWinEnter", {
 	group = ThePrimeagen_Fugitive,
 	pattern = "*",

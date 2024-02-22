@@ -1,11 +1,45 @@
 alias ap="ansible-playbook"
 alias python="python3"
 alias vim="nvim"
-alias glog="git log --oneline"
 
+# git alias
+alias gs="git status"
+alias glog='git log --oneline'
+alias gd='git diff'
+alias gpull='git pull'
+alias gpush='git push'
+alias gadd='git add .'
+alias gfind='git ls-files | grep -i'
+alias gundo='git reset HEAD~'
+
+# python alias
+alias pvc="python -m venv venv"
+alias pva="source venv/bin/activate"
 aoc() {
     sed -i "s/AOC_SESSION=.*/AOC_SESSION=$1/" ~/.bashrc
     source ~/.bashrc
 }
 export -f aoc
+function pydb {
+    python -mpdb -c "b $1" -c c "$2" "$3"
+}
+export -f pydb
+
+function pydc {
+    python -mpdb -c c  "$1" "$2"
+}
+export -f pydc
+
+# cmd for mybin
+function mycmd {
+    mybin="$HOME/bin"
+    dirs=$(find $HOME/src -mindepth 1 -maxdepth 1 -type d)
+    for dir in $dirs; do
+        name="${dir##*/}"
+        src="${dir}/$name"
+        dest="${mybin}/$name"
+        [[ -f $dest ]] || ln -s $src $dest
+    done
+}
+export -f mycmd
 
