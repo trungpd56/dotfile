@@ -12,7 +12,7 @@ autocmd("BufEnter", {
 
 autocmd("BufEnter", {
 	group = mytype,
-	pattern = "main*.y*ml",
+	pattern = "m*.y*ml",
 	callback = function()
 		vim.bo.filetype = "yaml.ansible"
 		vim.keymap.set("n", "<f5>", ":w<cr>:!ansible-playbook %<cr>")

@@ -3,8 +3,8 @@ return {
 	"tpope/vim-repeat",
 	"tpope/vim-eunuch",
 	"tpope/vim-unimpaired",
-	"tpope/vim-surround",
 	"mkitt/tabline.vim",
+	"tpope/vim-surround",
 	"wellle/targets.vim",
 	{ "folke/neodev.nvim", opts = {} },
 	{ "numtostr/comment.nvim", opts = {}, lazy = false },
@@ -18,7 +18,7 @@ return {
 	{
 		"mbbill/undotree",
 		config = function()
-			vim.keymap.set("n", "<leader>u", vim.cmd.undotreetoggle)
+			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 		end,
 	},
 	{
@@ -54,8 +54,8 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
-			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
 			"saadparwaiz1/cmp_luasnip",
 			{

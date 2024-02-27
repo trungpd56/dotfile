@@ -25,9 +25,21 @@ vim.opt.signcolumn = "yes"
 -- vim.opt.colorcolumn = "80"
 vim.opt.scrolloff = 10
 vim.opt.smoothscroll = true
-vim.opt.updatetime = 50
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.splitkeep = "cursor"
+
+-- Decrease update time
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+-- Sets how neovim will display certain whitespace in the editor.
+--  See :help 'list'
+--  and :help 'listchars'
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Preview substitutions live, as you type!
+-- vim.opt.inccommand = 'split'

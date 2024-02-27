@@ -1,6 +1,7 @@
 alias ap="ansible-playbook"
 alias python="python3"
 alias vim="nvim"
+alias upcur="updog -p 9999 --password cisco@1234"
 
 # git alias
 alias gs="git status"
@@ -10,7 +11,7 @@ alias gpull='git pull'
 alias gpush='git push'
 alias gadd='git add .'
 alias gfind='git ls-files | grep -i'
-alias gundo='git reset HEAD~'
+alias gundo='git reset --hard'
 
 # python alias
 alias pvc="python -m venv venv"
@@ -32,7 +33,7 @@ export -f pydc
 
 # cmd for mybin
 function mycmd {
-    mybin="$HOME/bin"
+    mybin="$HOME/.local/bin"
     dirs=$(find $HOME/src -mindepth 1 -maxdepth 1 -type d)
     for dir in $dirs; do
         name="${dir##*/}"
