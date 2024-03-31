@@ -17,6 +17,7 @@ local lsp_zero = require("lsp-zero")
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 end)
+
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = { "lua_ls", "pyright" },
@@ -35,14 +36,13 @@ require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup({})
 
 cmp.setup({
-	preselect = cmp.PreselectMode.None,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
 	},
 	completion = {
-		completeopt = "menu,menuone,noinsert,noselect",
+		completeopt = "menu,menuone,noinsert",
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-n>"] = cmp.mapping.select_next_item(),
@@ -50,8 +50,8 @@ cmp.setup({
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete({}),
-		["<CR>"] = cmp.mapping.confirm({
-			select = false,
+		["<tab>"] = cmp.mapping.confirm({
+			select = true,
 		}),
 		["<C-l>"] = cmp.mapping(function()
 			if luasnip.expand_or_locally_jumpable() then

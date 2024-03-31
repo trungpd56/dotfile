@@ -31,6 +31,7 @@ autocmd({ "TermOpen", "BufEnter" }, {
 	callback = function()
 		if vim.opt.buftype:get() == "terminal" then
 			vim.cmd(":startinsert")
+			-- vim.keymap.del("n", "<bs>")
 			vim.opt.nu = false
 			vim.opt.relativenumber = false
 		end

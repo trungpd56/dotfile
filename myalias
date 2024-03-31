@@ -1,9 +1,12 @@
+# alias
 alias ap="ansible-playbook"
 alias python="python3"
 alias vim="nvim"
 alias upcur="updog -p 9999 --password cisco@1234"
 
+
 # git alias
+alias gc="git commit"
 alias gs="git status"
 alias glog='git log --oneline'
 alias gd='git diff'
@@ -13,19 +16,26 @@ alias gadd='git add .'
 alias gfind='git ls-files | grep -i'
 alias gundo='git reset --hard'
 
-# python alias
-alias pvc="python -m venv venv"
-alias pva="source venv/bin/activate"
+# easy cheat.sh
+function cht {
+    curl -s cheat.sh/$(echo $@ | tr ' ' '/') | less -R
+}
+export -f cht
+
+# advent of code
 aoc() {
     sed -i "s/AOC_SESSION=.*/AOC_SESSION=$1/" ~/.bashrc
     source ~/.bashrc
 }
 export -f aoc
+
+# python alias
+alias pvc="python -m venv venv"
+alias pva="source venv/bin/activate"
 function pydb {
     python -mpdb -c "b $1" -c c "$2" "$3"
 }
 export -f pydb
-
 function pydc {
     python -mpdb -c c  "$1" "$2"
 }

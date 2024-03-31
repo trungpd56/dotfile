@@ -3,10 +3,11 @@ return {
 	"tpope/vim-repeat",
 	"tpope/vim-eunuch",
 	"tpope/vim-unimpaired",
+	"tpope/vim-rsi",
 	"mkitt/tabline.vim",
 	"tpope/vim-surround",
 	"wellle/targets.vim",
-	{ "folke/neodev.nvim", opts = {} },
+	{ "folke/neodev.nvim",     opts = {} },
 	{ "numtostr/comment.nvim", opts = {}, lazy = false },
 	{
 		"windwp/nvim-autopairs",
@@ -39,7 +40,7 @@ return {
 		"stevearc/oil.nvim",
 		config = function()
 			require("oil").setup({
-				skip_confirm_for_simple_edits = false,
+				skip_confirm_for_simple_edits = true,
 				view_options = {
 					show_hidden = true,
 				},
@@ -47,7 +48,7 @@ return {
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 		end,
 	},
-	{ "vonheikemen/lsp-zero.nvim", branch = "v3.x" },
+	{ "vonheikemen/lsp-zero.nvim",        branch = "v3.x" },
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "neovim/nvim-lspconfig" },
