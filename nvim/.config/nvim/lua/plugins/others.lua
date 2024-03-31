@@ -9,6 +9,18 @@ return {
 	"wellle/targets.vim",
 	{ "folke/neodev.nvim",     opts = {} },
 	{ "numtostr/comment.nvim", opts = {}, lazy = false },
+	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
+		'lewis6991/gitsigns.nvim',
+		opts = {
+			signs = {
+				add = { text = '+' },
+				change = { text = '~' },
+				delete = { text = '_' },
+				topdelete = { text = '‾' },
+				changedelete = { text = '~' },
+			},
+		},
+	},
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -20,12 +32,6 @@ return {
 		"mbbill/undotree",
 		config = function()
 			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-		end,
-	},
-	{
-		"tpope/vim-fugitive",
-		config = function()
-			vim.keymap.set("n", "<leader>gs", "<cmd>Git<cr>", {})
 		end,
 	},
 	{

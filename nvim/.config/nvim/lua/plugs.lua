@@ -27,6 +27,20 @@ require("mason-lspconfig").setup({
 			local lua_opts = lsp_zero.nvim_lua_ls()
 			require("lspconfig").lua_ls.setup(lua_opts)
 		end,
+		ansiblels = function()
+			require("lspconfig").ansiblels.setup({
+				settings = {
+					ansible = {
+						validation = {
+							lint = {
+								enabled = false,
+							}
+						}
+					}
+				}
+
+			})
+		end,
 	},
 })
 
@@ -67,7 +81,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
-		{ name = "path", keyword_length = 3 },
-		{ name = "buffer", keyword_length = 3 },
+		{ name = "path",    keyword_length = 3 },
+		{ name = "buffer",  keyword_length = 3 },
 	},
 })
