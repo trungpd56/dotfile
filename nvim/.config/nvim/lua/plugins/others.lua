@@ -1,15 +1,24 @@
 return {
-	"tpope/vim-sleuth",
-	"tpope/vim-repeat",
-	"tpope/vim-eunuch",
-	"tpope/vim-unimpaired",
-	"tpope/vim-rsi",
+	"christoomey/vim-sort-motion",
+	"christoomey/vim-titlecase",
+	"christoomey/vim-tmux-navigator",
+	"inkarkat/vim-ReplaceWithRegister",
+	"junegunn/vim-peekaboo",
+	"mbbill/undotree",
 	"mkitt/tabline.vim",
+	"nelstrom/vim-visual-star-search",
+	"romainl/vim-cool",
+	"tpope/vim-eunuch",
+	"tpope/vim-repeat",
+	"tpope/vim-rsi",
+	"tpope/vim-sleuth",
 	"tpope/vim-surround",
+	"tpope/vim-unimpaired",
 	"wellle/targets.vim",
-	{ "folke/neodev.nvim",     opts = {} },
+	-- "TomNomNom/xoria256.vim",
 	{ "numtostr/comment.nvim", opts = {}, lazy = false },
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
+	{ "folke/neodev.nvim",     opts = {} },
+	{
 		'lewis6991/gitsigns.nvim',
 		opts = {
 			signs = {

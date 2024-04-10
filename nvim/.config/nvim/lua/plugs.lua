@@ -9,6 +9,7 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 require("lazy").setup("plugins")
@@ -29,16 +30,7 @@ require("mason-lspconfig").setup({
 		end,
 		ansiblels = function()
 			require("lspconfig").ansiblels.setup({
-				settings = {
-					ansible = {
-						validation = {
-							lint = {
-								enabled = false,
-							}
-						}
-					}
-				}
-
+				settings = { ansible = { validation = { lint = { enabled = false, } } } }
 			})
 		end,
 	},
